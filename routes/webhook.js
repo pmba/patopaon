@@ -9,12 +9,12 @@ const validation = (req, res, next) => {
 };
 
 router.get('/status', (req, res) => {
-    res.json({ statusCode: 200, statusMsg: "To Online" }).status(200);
+    res.json({ statusCode: 200, statusMsg: "To Online" });
 });
 
 router.post('/on', validation, (req, res) => {
     console.log(req.body);
-    res.send('OK').status(200);
+    res.send('OK');
 });
 
 module.exports = router;
