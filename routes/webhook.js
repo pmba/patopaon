@@ -64,12 +64,14 @@ router.get('/status', (req, res) => {
     });
 });
 
-router.post('/data', (req, res) => {
-    console.log(req.body);
-    return res.status(200).send('Ok');
-});
+// router.post('/data', (req, res) => {
+//     console.log(req.body);
+//     return res.status(200).send('Ok');
+// });
 
 router.post('/on', validation, (req, res) => {
+
+    console.log(`Alan tá online: ${req.body.game}, ${Date.now()}`);
     
     T.post('statuses/update', {
         status: `${greetings[getRandomArbitrary(0, greetings.length+1)]}
