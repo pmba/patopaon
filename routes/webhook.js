@@ -43,6 +43,7 @@ try {
     Auth = require('../config.auth');
 } catch (error) {
     Auth = {
+        "auth": true,
         "token": process.env.AUTH_TOKEN
     }
 }
@@ -72,6 +73,7 @@ router.get('/status', (req, res) => {
 router.post('/on', validation, (req, res) => {
 
     console.log(`Alan tá online: ${req.body.game}, ${Date.now()}`);
+    console.log(req.body);
     
     T.post('statuses/update', {
         status: `${greetings[getRandomArbitrary(0, greetings.length+1)]}
