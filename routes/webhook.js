@@ -1,6 +1,7 @@
 const express   = require('express');
 const router    = express.Router();
 const Twitter   = require('twitter');
+const Request   = require('request');
 
 const greetings = [
     'Olá Pessoas!',
@@ -65,10 +66,43 @@ router.get('/status', (req, res) => {
     });
 });
 
-// router.post('/data', (req, res) => {
-//     console.log(req.body);
-//     return res.status(200).send('Ok');
-// });
+router.get('/check', (req, res) => {
+    let options = {
+        method: 'GET',
+        url: 'https://api.twitch.tv/helix/streams',
+        qs: { user_login: args[0] },
+        headers: {   
+            'Cache-Control': 'no-cache',
+            'Client-ID': process.env.TWITCH_CLIENT 
+        }
+    };
+
+    Request(options, async (err, res, body) => {
+        if (err) console.error(err);
+
+        body = JSON.parse(body);
+
+        if (body.data.length) {
+            let streamInfo = body.data[0];
+
+            T.post('statuses/update', {
+                status: `${greetings[getRandomArbitrary(0, greetings.length+1)]}
+                        \n${streamInfo.title}
+                        \nhttps://twitch.tv/alanzoka`
+            }, (error, tweet, response) => {
+                if (error) throw error;
+                else {
+
+                    res.json({
+                        statusCode: 200,
+                        statusMsg: "Postado no Twitter",
+                        time: tweet.created_at
+                    });
+                }
+            });
+        }
+    });
+});
 
 router.post('/on', validation, (req, res) => {
 
