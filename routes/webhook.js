@@ -64,6 +64,11 @@ router.get('/status', (req, res) => {
     });
 });
 
+router.post('/data', (req, res) => {
+    console.log(req.body);
+    return res.status(200).send('Ok');
+});
+
 router.post('/on', validation, (req, res) => {
     
     T.post('statuses/update', {
