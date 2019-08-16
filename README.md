@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://pbs.twimg.com/media/DZubgAMXUAADssd.png" alt="emote" style="width: 250px;">
+    <img src="https://pbs.twimg.com/media/DZubgAMXUAADssd.png" alt="emote" style="width: 150px;">
 
 </div>
 
@@ -9,7 +9,7 @@
 
 ## Introdução
 
-<img src="https://static-cdn.jtvnw.net/emoticons/v1/1774932/3.0" style="width: 40px; margin: 0 10px 0 0;" align="left">
+<img src="https://static-cdn.jtvnw.net/emoticons/v1/1774932/3.0" style="width: 30px; margin: 0 10px 0 0;" align="left">
 
 TaOnZoka, é um bot simples feito com NodeJs e integrado com IFTTT, que tem como missão, notificar os seguidores por meio de um tweet, quando o streamer [Alanzoka](https://twitter.com/alanzoka) estiver online na Twitch.
 
@@ -27,7 +27,7 @@ O dois únicos pré-requisitos para executá-lo é ter uma versão do NodeJS ins
 
 ### Executando
 
-<img src="https://static-cdn.jtvnw.net/emoticons/v1/1776432/3.0" style="width: 40px; margin: 0 10px 0 0;" align="left"> 
+<img src="https://static-cdn.jtvnw.net/emoticons/v1/1776432/3.0" style="width: 30px; margin: 0 10px 0 0;" align="left"> 
 
 Caso você queira rodar o bot no seu computador, basta seguir os passos a seguir:
 
@@ -76,6 +76,6 @@ onde o campo token deverá ser um token secreto que será usado para autenticaç
 
 ## Conclusão
 
-<img src="https://static-cdn.jtvnw.net/emoticons/v1/1774890/3.0" style="width: 40px; margin: 0 10px 0 0;" align="left"> 
+<img src="https://static-cdn.jtvnw.net/emoticons/v1/1774890/3.0" style="width: 30px; margin: 0 10px 0 0;" align="left"> 
 
 Então, é isso, é um projeto simples porém pode ajudar quem está começando na área da programção. Qualquer dúvida ou sugestão, podem entrar em contato comigo via email; pmba@ic.ufal.br
