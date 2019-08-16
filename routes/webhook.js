@@ -73,7 +73,7 @@ router.post('/check', validation, (req, res) => {
         qs: { user_login: 'alanzoka' },
         headers: {   
             'Cache-Control': 'no-cache',
-            'Client-ID': 'ddjcqcmo6wsmizzhffmp5rpselg02c' 
+            'Client-ID': process.env.TWITCH_ID 
         }
     };
 
@@ -108,7 +108,7 @@ router.post('/check', validation, (req, res) => {
 
 router.post('/on', validation, (req, res) => {
 
-    console.log(`Alan tá online: ${req.body.game}, ${Date.now()}`);
+    console.log(`Tá online: ${req.body.game}, ${Date.now()}`);
     console.log(req.body);
     
     T.post('statuses/update', {
