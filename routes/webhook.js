@@ -50,7 +50,7 @@ try {
 const validation = (req, res, next) => {
     let { auth } = req.body;
 
-    if (auth === Auth.token) next();
+    if (!Auth.auth || auth === Auth.token) next();
     else return res.json({
         statusCode: 401,
         statusMsg: "Invalid Token"
