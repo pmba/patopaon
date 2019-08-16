@@ -10,7 +10,7 @@ const greetings = [
     '👺 Alan abriu a stream agora, cara tóxico...',
     '🕶 O que é isso que eu estou vendo aqui?',
     '🐩 Woof Woof, começou.',
-    '🍓 Ei meu moranguinho, toma ai um mais docinho pra alegrar seu dia.',
+    '🍓 Ei meu moranguinho, toma ai mais um docinho pra alegrar seu dia.',
     '🎮 IT\'S ALANZOKA.',
     '⌚️ Priiiiiiiiin, Acorda que começou.',
     '❤️ Amorzinhos chat.',
