@@ -73,17 +73,19 @@ router.post('/check', validation, (req, res) => {
         qs: { user_login: 'alanzoka' },
         headers: {   
             'Cache-Control': 'no-cache',
-            'Client-ID': process.env.TWITCH_CLIENT 
+            'Client-ID': 'ddjcqcmo6wsmizzhffmp5rpselg02c' 
         }
     };
 
-    Request(options, async (err, res, body) => {
+    Request(options, async (err, resR, bodyR) => {
         if (err) console.error(err);
 
-        body = JSON.parse(body);
+        bodyR = JSON.parse(bodyR);
 
-        if (body.data.length) {
-            let streamInfo = body.data[0];
+        console.log(bodyR);
+
+        if (bodyR.data.length) {
+            let streamInfo = bodyR.data[0];
 
             T.post('statuses/update', {
                 status: `${greetings[getRandomArbitrary(0, greetings.length+1)]}
