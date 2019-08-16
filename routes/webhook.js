@@ -70,7 +70,7 @@ router.post('/check', validation, (req, res) => {
     let options = {
         method: 'GET',
         url: 'https://api.twitch.tv/helix/streams',
-        qs: { user_login: args[0] },
+        qs: { user_login: 'alanzoka' },
         headers: {   
             'Cache-Control': 'no-cache',
             'Client-ID': process.env.TWITCH_CLIENT 
