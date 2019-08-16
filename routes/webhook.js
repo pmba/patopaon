@@ -45,7 +45,8 @@ try {
 } catch (error) {
     Auth = {
         "auth": true,
-        "token": process.env.AUTH_TOKEN
+        "token": process.env.AUTH_TOKEN,
+        "twitter_id": process.env.TWITCH_ID
     }
 }
 
