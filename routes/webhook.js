@@ -66,7 +66,7 @@ router.get('/status', (req, res) => {
     });
 });
 
-router.get('/check', (req, res) => {
+router.post('/check', validation, (req, res) => {
     let options = {
         method: 'GET',
         url: 'https://api.twitch.tv/helix/streams',
