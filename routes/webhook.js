@@ -18,11 +18,10 @@ const greetings = [
     '🛂 Ei! Parado ai, você foi multado por não estar vendo a stream.',
     '🚸 Atenção! Stream da família brasileira começando.',
     '🔎 Ora ora ora, vejam só o que eu encontrei aqui...'
-
 ];
 
 function getRandomArbitrary(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 try {
@@ -87,9 +86,12 @@ router.post('/check', validation, (req, res) => {
 
         if (bodyR.data.length) {
             let streamInfo = bodyR.data[0];
+            let greeting = greetings[getRandomArbitrary(0, greetings.length)];
+
+            if (greeting == undefined) greeting = greetings[0];
 
             T.post('statuses/update', {
-                status: `${greetings[getRandomArbitrary(0, greetings.length+1)]}
+                status: `${greeting}
                         \n${streamInfo.title}
                         \nhttps://twitch.tv/alanzoka`
             }, (error, tweet, response) => {
