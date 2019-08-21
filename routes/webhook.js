@@ -44,8 +44,7 @@ try {
 } catch (error) {
     Auth = {
         "auth": true,
-        "token": process.env.AUTH_TOKEN,
-        "twitter_id": process.env.TWITCH_ID
+        "token": process.env.AUTH_TOKEN
     }
 }
 
@@ -70,7 +69,7 @@ router.post('/check', validation, (req, res) => {
     let options = {
         method: 'GET',
         url: 'https://api.twitch.tv/helix/streams',
-        qs: { user_login: 'alanzoka' },
+        qs: { user_login: 'patopapao' },
         headers: {   
             'Cache-Control': 'no-cache',
             'Client-ID': process.env.TWITCH_ID 
