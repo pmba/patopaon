@@ -84,7 +84,7 @@ router.post('/check', validation, (req, res) => {
             T.post('statuses/update', {
                 status: `${greeting}
                         \n${streamInfo.title}
-                        \nhttps://twitch.tv/alanzoka`
+                        \nhttps://www.twitch.tv/patopapao`
             }, (error, tweet, response) => {
                 if (error) throw error;
                 else {
