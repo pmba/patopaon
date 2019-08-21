@@ -4,20 +4,12 @@ const Twitter   = require('twitter');
 const Request   = require('request');
 
 const greetings = [
-    'Olá Pessoas!',
-    '🚌 Ônibus! ',
-    '👪 👩‍👩‍👧 👨‍👨‍👦 Salve Família!',
-    '🧐 Saudações caros apreciadores de uma bela stream diária.',
-    '👺 Alan abriu a stream agora, cara tóxico...',
-    '🕶 O que é isso que eu estou vendo aqui?',
-    '🐩 Woof Woof, começou.',
-    '🍓 Ei meu moranguinho, toma ai mais um docinho pra alegrar seu dia.',
-    '🎮 IT\'S ALANZOKA.',
-    '⌚️ Priiiiiiiiin, Acorda que começou.',
-    '❤️ Amorzinhos chat.',
-    '🛂 Ei! Parado ai, você foi multado por não estar vendo a stream.',
-    '🚸 Atenção! Stream da família brasileira começando.',
-    '🔎 Ora ora ora, vejam só o que eu encontrei aqui...'
+    '🦆 Boa noite pato',
+    'Boa noite chat',
+    '🐂 Alô Boizão',
+    'Sim pirilim',
+    'Toin, Fuom, Ploinnn',
+    'IAE BLZ?'
 ];
 
 function getRandomArbitrary(min, max) {
