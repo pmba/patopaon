@@ -82,7 +82,7 @@ router.post('/check', validation, (req, res) => {
             if (greeting == undefined) greeting = greetings[0];
 
             T.post('statuses/update', {
-                status: `${greeting}
+                status: `@PatoPapao \n${greeting}
                         \n${streamInfo.title}
                         \nhttps://www.twitch.tv/patopapao`
             }, (error, tweet, response) => {
@@ -106,7 +106,7 @@ router.post('/on', validation, (req, res) => {
     console.log(req.body);
     
     T.post('statuses/update', {
-        status: `${greetings[getRandomArbitrary(0, greetings.length+1)]}
+        status: `@PatoPapao \n${greetings[getRandomArbitrary(0, greetings.length+1)]}
                 \n${req.body.game}
                 \n${req.body.channelUrl}`
     }, (error, tweet, response) => {
