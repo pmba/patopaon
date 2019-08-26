@@ -86,10 +86,22 @@ router.post('/check', validation, (req, res) => {
         var dateToString = toBrasilHourDateFormat(currentDate);
 
         if (bodyR.data.length) {
-            let streamInfo = bodyR.data[0];
-            let greeting = greetings[getRandomArbitrary(0, greetings.length)];
 
-            if (greeting == undefined) greeting = greetings[0];
+            T.post('statuses/update', {
+                status: `${dateToString} E o @PatoPapao está online. \n https://www.twitch.tv/patopapao`
+            }, (error, tweet, response) => {
+                if (error) throw error;
+                else {
+
+                    res.json({
+                        statusCode: 200,
+                        statusMsg: `${dateToString} - Pato Online`,
+                        time: tweet.created_at
+                    });
+                }
+            });
+
+        } else {
 
             T.post('statuses/update', {
                 status: `${dateToString} E o @PatoPapao não está online.`
@@ -104,20 +116,7 @@ router.post('/check', validation, (req, res) => {
                     });
                 }
             });
-        } else {
-            T.post('statuses/update', {
-                status: `${dateToString} E o @PatoPapao está online. \n https://www.twitch.tv/patopapao`
-            }, (error, tweet, response) => {
-                if (error) throw error;
-                else {
 
-                    res.json({
-                        statusCode: 200,
-                        statusMsg: `${dateToString} - Pato Online`,
-                        time: tweet.created_at
-                    });
-                }
-            });
         }
     });
 });
