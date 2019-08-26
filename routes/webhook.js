@@ -2,6 +2,13 @@ const express   = require('express');
 const router    = express.Router();
 const Twitter   = require('twitter');
 const Request   = require('request');
+const moment    = require('moment-timezone');
+
+function toBrasilHourDateFormat(date) {
+    let format = "DD/MM/YYYY HH:mm";
+    
+    return moment(date, format).tz("America/Fortaleza").format(format);
+}
 
 const greetings = [
     '🦆 Boa noite pato',
@@ -75,6 +82,9 @@ router.post('/check', validation, (req, res) => {
 
         console.log(bodyR);
 
+        var currentDate = new Date();
+        var dateToString = toBrasilHourDateFormat(currentDate);
+
         if (bodyR.data.length) {
             let streamInfo = bodyR.data[0];
             let greeting = greetings[getRandomArbitrary(0, greetings.length)];
@@ -82,16 +92,28 @@ router.post('/check', validation, (req, res) => {
             if (greeting == undefined) greeting = greetings[0];
 
             T.post('statuses/update', {
-                status: `@PatoPapao \n${greeting}
-                        \n${streamInfo.title}
-                        \nhttps://www.twitch.tv/patopapao`
+                status: `${dateToString} E o @PatoPapao não está online.`
             }, (error, tweet, response) => {
                 if (error) throw error;
                 else {
 
                     res.json({
                         statusCode: 200,
-                        statusMsg: "Postado no Twitter",
+                        statusMsg: `${dateToString} - Pato Offline`,
+                        time: tweet.created_at
+                    });
+                }
+            });
+        } else {
+            T.post('statuses/update', {
+                status: `${dateToString} E o @PatoPapao está online. \n https://www.twitch.tv/patopapao`
+            }, (error, tweet, response) => {
+                if (error) throw error;
+                else {
+
+                    res.json({
+                        statusCode: 200,
+                        statusMsg: `${dateToString} - Pato Online`,
                         time: tweet.created_at
                     });
                 }
