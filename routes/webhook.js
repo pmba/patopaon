@@ -88,7 +88,7 @@ router.post('/check', validation, (req, res) => {
         if (bodyR.data.length) {
 
             T.post('statuses/update', {
-                status: `${dateToString} E o @PatoPapao está online. \n https://www.twitch.tv/patopapao`
+                status: `${dateToString} e o pato ta on! \n https://www.twitch.tv/patopapao`
             }, (error, tweet, response) => {
                 if (error) throw error;
                 else {
@@ -104,7 +104,7 @@ router.post('/check', validation, (req, res) => {
         } else {
 
             T.post('statuses/update', {
-                status: `${dateToString} E o @PatoPapao não está online.`
+                status: `${dateToString} e o pato não ta on.`
             }, (error, tweet, response) => {
                 if (error) throw error;
                 else {
