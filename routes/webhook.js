@@ -3,11 +3,17 @@ const router    = express.Router();
 const Twitter   = require('twitter');
 const Request   = require('request');
 const moment    = require('moment-timezone');
+const dotres    = require('dotenv').config();
 
-function toBrasilHourDateFormat(date) {
-    let format = "DD/MM/YYYY HH:mm";
-    
-    return moment(date, format).tz("America/Fortaleza").format(format);
+if (dotres.error) throw dotres.error;
+
+const BRDateFormat = (date) => {
+    return moment(date, format).tz("America/Fortaleza")
+        .format("DD/MM/YYYY HH:mm");
+}
+
+const getRandomInt = (max) => {
+    return Math.floor(Math.random() * (max + 1));
 }
 
 const greetings = [
@@ -22,38 +28,24 @@ const greetings = [
     '🤖 Be3p B0op'
 ];
 
-function getRandomArbitrary(max) {
-    return Math.floor(Math.random() * (max + 1));
-}
+const twitterConfig = {
+    consumer_key        : process.env.CONSUMER_KEY,
+    consumer_secret     : process.env.CONSUMER_SECRET,
+    access_token_key    : process.env.ACCESS_TOKEN_KEY,
+    access_token_secret : process.env.ACCESS_TOKEN_SECRET
+};
 
-try {
-    Config = require('../config');
-} catch (error) {
-    Config = {
-        consumer_key        : process.env.CONSUMER_KEY,
-        consumer_secret     : process.env.CONSUMER_SECRET,
-        access_token_key    : process.env.ACCESS_TOKEN_KEY,
-        access_token_secret : process.env.ACCESS_TOKEN_SECRET
-    };
-}
+const TT = new Twitter(twitterConfig);
 
-const T = new Twitter(Config);
-
-var Auth = {};
-
-try {
-    Auth = require('../config.auth');
-} catch (error) {
-    Auth = {
-        "auth": true,
-        "token": process.env.AUTH_TOKEN
-    }
-}
+const authConfig = {
+    "auth": true,
+    "token": process.env.AUTH_TOKEN
+};
 
 const validation = (req, res, next) => {
     let { auth } = req.body;
 
-    if (!Auth.auth || auth === Auth.token) next();
+    if (!authConfig.auth || auth === authConfig.token) next();
     else return res.json({
         statusCode: 401,
         statusMsg: "Invalid Token"
@@ -86,11 +78,11 @@ router.post('/check', validation, (req, res) => {
         console.log(bodyR);
 
         var currentDate = new Date();
-        var dateToString = toBrasilHourDateFormat(currentDate);
+        var dateToString = BRDateFormat(currentDate);
 
         if (bodyR.data.length) {
 
-            T.post('statuses/update', {
+            TT.post('statuses/update', {
                 status: `${dateToString} e o pato ta on! \n https://www.twitch.tv/patopapao`
             }, (error, tweet, response) => {
                 if (error) throw error;
@@ -106,7 +98,7 @@ router.post('/check', validation, (req, res) => {
 
         } else {
 
-            T.post('statuses/update', {
+            TT.post('statuses/update', {
                 status: `${dateToString} e o pato não ta on.`
             }, (error, tweet, response) => {
                 if (error) throw error;
@@ -129,8 +121,8 @@ router.post('/on', validation, (req, res) => {
     console.log(`Tá online: ${req.body.game}, ${Date.now()}`);
     console.log(req.body);
     
-    T.post('statuses/update', {
-        status: `@PatoPapao \n${greetings[getRandomArbitrary(greetings.length)]}
+    TT.post('statuses/update', {
+        status: `@PatoPapao \n${greetings[getRandomInt(greetings.length)]}
                 \n${req.body.game}
                 \n${req.body.channelUrl}`
     }, (error, tweet, response) => {
