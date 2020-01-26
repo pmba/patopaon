@@ -3,9 +3,8 @@ const router    = express.Router();
 const Twitter   = require('twitter');
 const Request   = require('request');
 const moment    = require('moment-timezone');
-const dotres    = require('dotenv').config();
 
-if (dotres.error) throw dotres.error;
+require('dotenv').config();
 
 const BRDateFormat = (date) => {
     return moment(date, format).tz("America/Fortaleza")
