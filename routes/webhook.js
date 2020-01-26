@@ -16,11 +16,14 @@ const greetings = [
     '🐂 Alô Boizão',
     'Sim pirilim',
     'Toin, Fuom, Ploinnn',
-    'IAE BLZ?'
+    'IAE BLZ?',
+    'b0a n0it3 ch4t 🤖',
+    'EXTRA, EXTRA, NOTÍCIA URGENTE @PatoPanews',
+    '🤖 Be3p B0op'
 ];
 
-function getRandomArbitrary(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+function getRandomArbitrary(max) {
+    return Math.floor(Math.random() * (max + 1));
 }
 
 try {
@@ -127,7 +130,7 @@ router.post('/on', validation, (req, res) => {
     console.log(req.body);
     
     T.post('statuses/update', {
-        status: `@PatoPapao \n${greetings[getRandomArbitrary(0, greetings.length+1)]}
+        status: `@PatoPapao \n${greetings[getRandomArbitrary(greetings.length)]}
                 \n${req.body.game}
                 \n${req.body.channelUrl}`
     }, (error, tweet, response) => {
